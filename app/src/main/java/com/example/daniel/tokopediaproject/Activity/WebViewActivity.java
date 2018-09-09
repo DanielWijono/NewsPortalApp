@@ -31,6 +31,7 @@ public class WebViewActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Web View");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.color_orange)));
+        toolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

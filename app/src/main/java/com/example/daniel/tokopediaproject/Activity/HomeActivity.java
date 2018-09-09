@@ -44,6 +44,7 @@ public class HomeActivity extends AppCompatActivity implements RecyclerViewInter
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Home");
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.color_orange)));
+        toolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
     }
 
     private void addListCategory() {
