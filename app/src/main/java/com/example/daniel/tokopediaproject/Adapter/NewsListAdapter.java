@@ -72,8 +72,18 @@ public class NewsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         public void setView(int position) {
             Glide.with(context).load(newsList.get(position).getUrlToImage()).placeholder(R.drawable.news_placeholder).into(newsImage);
             newsTitle.setText(newsList.get(position).getTitle());
-            newsDescription.setText(newsList.get(position).getDescription());
-            newsAuthor.setText(newsList.get(position).getAuthor());
+            if (newsList.get(position).getDescription() == null || newsList.get(position).getDescription().equalsIgnoreCase("")) {
+                newsDescription.setVisibility(View.GONE);
+            } else {
+                newsDescription.setVisibility(View.VISIBLE);
+                newsDescription.setText(newsList.get(position).getDescription());
+            }
+            if (newsList.get(position).getAuthor() == null || newsList.get(position).getAuthor().equalsIgnoreCase("") ) {
+                newsAuthor.setVisibility(View.GONE);
+            } else {
+                newsAuthor.setVisibility(View.VISIBLE);
+                newsAuthor.setText(newsList.get(position).getAuthor());
+            }
         }
 
         public void setCardViewOnClick(final int position) {

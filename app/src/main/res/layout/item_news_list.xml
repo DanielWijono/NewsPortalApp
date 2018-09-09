@@ -24,7 +24,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="TITLE"
-                android:textSize="@dimen/padding_margin_20dp"
+                android:textSize="@dimen/padding_margin_18dp"
+                android:textColor="@color/color_black"
                 android:textStyle="bold"
                 android:layout_margin="@dimen/padding_margin_6dp"
                 android:id="@+id/news_title"/>
@@ -34,6 +35,9 @@
                 android:layout_height="wrap_content"
                 android:text="DESCRIPTION"
                 android:textSize="@dimen/padding_margin_16dp"
+                android:textColor="@color/color_black"
+                android:maxLines="2"
+                android:ellipsize="end"
                 android:layout_margin="@dimen/padding_margin_6dp"
                 android:id="@+id/news_description"/>
 
@@ -42,6 +46,7 @@
                 android:layout_height="wrap_content"
                 android:text="AUTHOR"
                 android:textSize="@dimen/padding_margin_12dp"
+                android:textColor="@color/color_black"
                 android:layout_margin="@dimen/padding_margin_6dp"
                 android:id="@+id/news_author"/>
         </LinearLayout>
