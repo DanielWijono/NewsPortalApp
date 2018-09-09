@@ -16,6 +16,10 @@ public interface NewsListContract {
         void onSuccessGetTechcrunchDataView(MainResponse mainResponse);
 
         void onSuccessGetBitcoinDataView(MainResponse mainResponse);
+
+        void showProgressbar();
+
+        void dismissProgressbar();
     }
 
     interface Presenter {

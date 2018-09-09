@@ -4,7 +4,6 @@ public class Constants {
 
     public static final long TIMEOUT_CONNECTION = 15;
 
-
     public interface URL_API {
         String BASE_URL = "https://newsapi.org/v2/";
         String BUSINESS = "top-headlines?country=us&category=business&apiKey=12211a3b99b840178caf52ea420be870";
@@ -12,5 +11,14 @@ public class Constants {
         String TECHCRUNCH = "top-headlines?sources=techcrunch&apiKey=12211a3b99b840178caf52ea420be870";
         String APPLE = "everything?q=apple&from=2018-09-08&to=2018-09-08&sortBy=popularity&apiKey=12211a3b99b840178caf52ea420be870";
         String WALLSTREET = "everything?domains=wsj.com&apiKey=12211a3b99b840178caf52ea420be870";
+    }
+
+    public interface NEWS_TYPE {
+        String BUSINESS_NEWS = "business";
+        String BITCOIN_NEWS = "bitcoin";
+        String TECHCRUNCH_NEWS = "techcrunch";
+        String APPLE_NEWS = "apple";
+        String WALLSTREET_NEWS = "wallstreet";
+
     }
 }

@@ -24,8 +24,9 @@
             android:text="Testing"
             android:textStyle="bold"
             android:textSize="@dimen/medium_large_font_size"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/color_white"
             android:padding="@dimen/padding_margin_16dp"
+            android:background="@drawable/dark_blue_banner"
             android:id="@+id/tv_category_text"/>
 
     </android.support.v7.widget.CardView>

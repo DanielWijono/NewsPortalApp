@@ -18,7 +18,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.NewsListActivity"></activity>
+        <activity android:name=".Activity.NewsListActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.WebViewActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

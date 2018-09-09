@@ -70,14 +70,19 @@ public class NewsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
 
         public void setView(int position) {
-            Glide.with(context).load(newsList.get(position).getUrlToImage()).placeholder(R.drawable.news_placeholder).into(newsImage); //TAMBAHIN PLACEHOLDER
+            Glide.with(context).load(newsList.get(position).getUrlToImage()).placeholder(R.drawable.news_placeholder).into(newsImage);
             newsTitle.setText(newsList.get(position).getTitle());
             newsDescription.setText(newsList.get(position).getDescription());
             newsAuthor.setText(newsList.get(position).getAuthor());
         }
 
-        public void setCardViewOnClick(int position) {
-
+        public void setCardViewOnClick(final int position) {
+            newsCardview.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    recyclerViewInterface.onRecyclerViewClicked(position);
+                }
+            });
         }
     }
 }

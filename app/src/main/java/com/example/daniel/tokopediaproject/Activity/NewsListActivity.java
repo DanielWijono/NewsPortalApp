@@ -1,11 +1,13 @@
 package com.example.daniel.tokopediaproject.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ProgressBar;
 
-import com.example.daniel.tokopediaproject.Adapter.HomeCategoryAdapter;
 import com.example.daniel.tokopediaproject.Adapter.NewsListAdapter;
 import com.example.daniel.tokopediaproject.Contract.NewsListContract;
 import com.example.daniel.tokopediaproject.Interface.RecyclerViewInterface;
@@ -24,12 +26,15 @@ public class NewsListActivity extends AppCompatActivity implements NewsListContr
 
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
+    @BindView(R.id.progress_bar)
+    ProgressBar progressBar;
 
     private Bundle bundle;
     private String newsValue;
     private NewsListPresenter presenter;
     private List<Articles> newsList = new ArrayList<>();
     private RecyclerViewInterface recyclerViewInterface = this;
+    private MainResponse mainResponse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,32 +59,49 @@ public class NewsListActivity extends AppCompatActivity implements NewsListContr
 
     @Override
     public void onSuccessGetBusinessDataView(MainResponse mainResponse) {
+        this.mainResponse = mainResponse;
         newsList = mainResponse.getArticlesList();
         initRecyclerView();
     }
 
     @Override
     public void onSuccessGetWallstreetDataView(MainResponse mainResponse) {
+        this.mainResponse = mainResponse;
         newsList = mainResponse.getArticlesList();
         initRecyclerView();
     }
 
     @Override
     public void onSuccessGetAppleDataView(MainResponse mainResponse) {
+        this.mainResponse = mainResponse;
         newsList = mainResponse.getArticlesList();
         initRecyclerView();
     }
 
     @Override
     public void onSuccessGetTechcrunchDataView(MainResponse mainResponse) {
+        this.mainResponse = mainResponse;
         newsList = mainResponse.getArticlesList();
         initRecyclerView();
     }
 
     @Override
     public void onSuccessGetBitcoinDataView(MainResponse mainResponse) {
+        this.mainResponse = mainResponse;
         newsList = mainResponse.getArticlesList();
         initRecyclerView();
+    }
+
+    @Override
+    public void showProgressbar() {
+        progressBar.setVisibility(View.VISIBLE);
+        recyclerView.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void dismissProgressbar() {
+        progressBar.setVisibility(View.GONE);
+        recyclerView.setVisibility(View.VISIBLE);
     }
 
     private void initRecyclerView() {
@@ -91,6 +113,9 @@ public class NewsListActivity extends AppCompatActivity implements NewsListContr
 
     @Override
     public void onRecyclerViewClicked(int position) {
-
+        System.out.println("url news : "+mainResponse.getArticlesList().get(position).getUrl());
+        Intent intent = new Intent(this, WebViewActivity.class);
+        intent.putExtra("url",mainResponse.getArticlesList().get(position).getUrl());
+        startActivity(intent);
     }
 }
