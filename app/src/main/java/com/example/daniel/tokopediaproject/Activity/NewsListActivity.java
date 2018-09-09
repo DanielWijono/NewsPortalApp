@@ -1,10 +1,12 @@
 package com.example.daniel.tokopediaproject.Activity;
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -28,6 +30,8 @@ public class NewsListActivity extends AppCompatActivity implements NewsListContr
     RecyclerView recyclerView;
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
     private Bundle bundle;
     private String newsValue;
@@ -50,6 +54,17 @@ public class NewsListActivity extends AppCompatActivity implements NewsListContr
         bundle = getIntent().getExtras();
         if (bundle != null) {
             newsValue = bundle.getString("news");
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setTitle(newsValue);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.color_orange)));
+
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onBackPressed();
+                }
+            });
         }
     }
 
@@ -113,9 +128,8 @@ public class NewsListActivity extends AppCompatActivity implements NewsListContr
 
     @Override
     public void onRecyclerViewClicked(int position) {
-        System.out.println("url news : "+mainResponse.getArticlesList().get(position).getUrl());
         Intent intent = new Intent(this, WebViewActivity.class);
-        intent.putExtra("url",mainResponse.getArticlesList().get(position).getUrl());
+        intent.putExtra("url", mainResponse.getArticlesList().get(position).getUrl());
         startActivity(intent);
     }
 }

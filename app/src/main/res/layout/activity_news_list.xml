@@ -6,16 +6,23 @@
     android:background="@color/color_white"
     tools:context=".Activity.NewsListActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/toolbar"/>
+
     <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:indeterminateTint="@color/color_orange"
         android:id="@+id/progress_bar"/>
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/padding_margin_16dp"
+        android:layout_below="@+id/toolbar"
         android:id="@+id/recycler_view"/>
 
 </RelativeLayout>

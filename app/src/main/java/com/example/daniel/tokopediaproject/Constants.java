@@ -14,11 +14,11 @@ public class Constants {
     }
 
     public interface NEWS_TYPE {
-        String BUSINESS_NEWS = "business";
-        String BITCOIN_NEWS = "bitcoin";
-        String TECHCRUNCH_NEWS = "techcrunch";
-        String APPLE_NEWS = "apple";
-        String WALLSTREET_NEWS = "wallstreet";
+        String BUSINESS_NEWS = "Business";
+        String BITCOIN_NEWS = "Bitcoin";
+        String TECHCRUNCH_NEWS = "TechCrunch";
+        String APPLE_NEWS = "Apple";
+        String WALLSTREET_NEWS = "Wallstreet";
 
     }
 }
