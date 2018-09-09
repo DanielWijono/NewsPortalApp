@@ -13,6 +13,14 @@
         app:theme="@style/ToolBarStyle"
         android:id="@+id/toolbar"/>
 
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:hint="Search News Here"
+        android:layout_below="@+id/toolbar"
+        android:id="@+id/et_search"/>
+
     <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,7 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/padding_margin_16dp"
-        android:layout_below="@+id/toolbar"
+        android:layout_below="@+id/et_search"
         android:id="@+id/recycler_view"/>
 
 </RelativeLayout>

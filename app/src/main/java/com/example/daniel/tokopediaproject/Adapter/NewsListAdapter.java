@@ -32,6 +32,11 @@ public class NewsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         this.recyclerViewInterface = recyclerViewInterface;
     }
 
+    public void setSearch(List<Articles> newsList) {
+        //this.newsList = newsList;
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -94,5 +99,15 @@ public class NewsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 }
             });
         }
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
     }
 }

@@ -1,6 +1,9 @@
 package com.example.daniel.tokopediaproject.Contract;
 
+import com.example.daniel.tokopediaproject.Model.Articles;
 import com.example.daniel.tokopediaproject.Model.MainResponse;
+
+import java.util.List;
 
 import retrofit2.Call;
 
@@ -20,6 +23,8 @@ public interface NewsListContract {
         void showProgressbar();
 
         void dismissProgressbar();
+
+        void showSearchNewsResult(List<Articles> filteredArticleList);
     }
 
     interface Presenter {
@@ -41,6 +46,8 @@ public interface NewsListContract {
         void onSuccessGetWallstreetData(MainResponse mainResponse);
 
         void onFailedGetWallstreetData(String message);
+
+        void onQueryTextChanged(String textchanged);
     }
 
     interface Interactor {

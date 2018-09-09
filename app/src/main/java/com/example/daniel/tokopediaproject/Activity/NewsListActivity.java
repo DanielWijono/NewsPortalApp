@@ -7,8 +7,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.SearchView;
 
 import com.example.daniel.tokopediaproject.Adapter.NewsListAdapter;
 import com.example.daniel.tokopediaproject.Contract.NewsListContract;
@@ -32,6 +36,8 @@ public class NewsListActivity extends AppCompatActivity implements NewsListContr
     ProgressBar progressBar;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+    @BindView(R.id.et_search)
+    EditText etSearch;
 
     private Bundle bundle;
     private String newsValue;
@@ -39,6 +45,24 @@ public class NewsListActivity extends AppCompatActivity implements NewsListContr
     private List<Articles> newsList = new ArrayList<>();
     private RecyclerViewInterface recyclerViewInterface = this;
     private MainResponse mainResponse;
+    private NewsListAdapter newsListAdapter;
+
+    private TextWatcher textWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+            presenter.onQueryTextChanged(etSearch.getText().toString());
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +70,7 @@ public class NewsListActivity extends AppCompatActivity implements NewsListContr
         setContentView(R.layout.activity_news_list);
         ButterKnife.bind(this);
         presenter = new NewsListPresenter(this);
+        etSearch.addTextChangedListener(textWatcher);
         getBundle();
         validationCallAPI();
     }
@@ -118,6 +143,15 @@ public class NewsListActivity extends AppCompatActivity implements NewsListContr
     public void dismissProgressbar() {
         progressBar.setVisibility(View.GONE);
         recyclerView.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void showSearchNewsResult(List<Articles> filteredArticleList) {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        NewsListAdapter newsListAdapter = new NewsListAdapter(this, filteredArticleList, recyclerViewInterface);
+        newsListAdapter.setSearch(filteredArticleList);
+        recyclerView.setAdapter(newsListAdapter);
     }
 
     private void initRecyclerView() {
