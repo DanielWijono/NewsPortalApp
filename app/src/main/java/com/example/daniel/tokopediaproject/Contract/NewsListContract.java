@@ -9,45 +9,25 @@ import retrofit2.Call;
 
 public interface NewsListContract {
     interface View {
-
-        void onSuccessGetBusinessDataView(MainResponse mainResponse);
-
-        void onSuccessGetWallstreetDataView(MainResponse mainResponse);
-
-        void onSuccessGetAppleDataView(MainResponse mainResponse);
-
-        void onSuccessGetTechcrunchDataView(MainResponse mainResponse);
-
-        void onSuccessGetBitcoinDataView(MainResponse mainResponse);
-
+        
         void showProgressbar();
 
         void dismissProgressbar();
 
         void showSearchNewsResult(List<Articles> filteredArticleList);
+
+        void onSuccessGetDataView(MainResponse mainResponse);
+
+        void showDataBeforeFiltered();
     }
 
     interface Presenter {
-
-        void onSuccessGetBusinessData(MainResponse mainResponse);
-
-        void onFailedGetBusinessData(String message);
-
-        void onSuccessGetBitcoinData(MainResponse mainResponse);
-
-        void onSuccessGetTechcrunchData(MainResponse mainResponse);
-
-        void onFailedGetTechcrunchData(String message);
-
-        void onSuccessGetAppleData(MainResponse mainResponse);
-
-        void onFailedGetAppleData(String message);
-
-        void onSuccessGetWallstreetData(MainResponse mainResponse);
-
-        void onFailedGetWallstreetData(String message);
-
+        
         void onQueryTextChanged(String textchanged);
+
+        void onSuccessGetData(MainResponse mainResponse);
+
+        void onFailedGetData(String message);
     }
 
     interface Interactor {

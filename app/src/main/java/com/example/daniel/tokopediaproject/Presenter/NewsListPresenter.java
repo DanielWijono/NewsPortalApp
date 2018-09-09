@@ -57,77 +57,33 @@ public class NewsListPresenter implements NewsListContract.Presenter {
     }
 
     @Override
-    public void onSuccessGetBusinessData(MainResponse mainResponse) {
+    public void onSuccessGetData(MainResponse mainResponse) {
         articlesList = mainResponse.getArticlesList();
         view.dismissProgressbar();
-        view.onSuccessGetBusinessDataView(mainResponse);
+        view.onSuccessGetDataView(mainResponse);
     }
 
     @Override
-    public void onFailedGetBusinessData(String message) {
-        view.dismissProgressbar();
-    }
-
-    @Override
-    public void onSuccessGetBitcoinData(MainResponse mainResponse) {
-        articlesList = mainResponse.getArticlesList();
-        view.dismissProgressbar();
-        view.onSuccessGetBitcoinDataView(mainResponse);
-    }
-
-    @Override
-    public void onSuccessGetTechcrunchData(MainResponse mainResponse) {
-        articlesList = mainResponse.getArticlesList();
-        view.dismissProgressbar();
-        view.onSuccessGetTechcrunchDataView(mainResponse);
-    }
-
-    @Override
-    public void onFailedGetTechcrunchData(String message) {
-        view.dismissProgressbar();
-    }
-
-    @Override
-    public void onSuccessGetAppleData(MainResponse mainResponse) {
-        articlesList = mainResponse.getArticlesList();
-        view.dismissProgressbar();
-        view.onSuccessGetAppleDataView(mainResponse);
-    }
-
-    @Override
-    public void onFailedGetAppleData(String message) {
-        view.dismissProgressbar();
-    }
-
-    @Override
-    public void onSuccessGetWallstreetData(MainResponse mainResponse) {
-        articlesList = mainResponse.getArticlesList();
-        view.dismissProgressbar();
-        view.onSuccessGetWallstreetDataView(mainResponse);
-    }
-
-    @Override
-    public void onFailedGetWallstreetData(String message) {
+    public void onFailedGetData(String message) {
         view.dismissProgressbar();
     }
 
     @Override
     public void onQueryTextChanged(String textchanged) {
-        if (textchanged.length() >=2) {
+        if (textchanged.length() >=1) {
             getFilterSearch(textchanged);
-       }
+       } else {
+            view.showDataBeforeFiltered();
+        }
     }
 
     private void getFilterSearch(String textchanged) {
         filteredArticleList.clear();
         for (int i = 0 ; i < articlesList.size(); i++) {
-            try {
-                if (articlesList.get(i).getTitle().toLowerCase().contains(textchanged.toLowerCase()) || articlesList.get(i).getDescription().toLowerCase().contains(textchanged.toLowerCase())
-                        || articlesList.get(i).getDescription().toLowerCase().contains(textchanged.toLowerCase())) {
+            if (articlesList.get(i).getTitle() != null) {
+                if (articlesList.get(i).getTitle().toLowerCase().contains(textchanged.toLowerCase())) {
                     filteredArticleList.add(articlesList.get(i));
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
             }
         }
         view.showSearchNewsResult(filteredArticleList);

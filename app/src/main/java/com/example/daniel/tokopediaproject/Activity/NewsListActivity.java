@@ -12,7 +12,6 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.SearchView;
 
 import com.example.daniel.tokopediaproject.Adapter.NewsListAdapter;
 import com.example.daniel.tokopediaproject.Contract.NewsListContract;
@@ -99,42 +98,8 @@ public class NewsListActivity extends AppCompatActivity implements NewsListContr
     }
 
     @Override
-    public void onSuccessGetBusinessDataView(MainResponse mainResponse) {
-        this.mainResponse = mainResponse;
-        newsList = mainResponse.getArticlesList();
-        initRecyclerView();
-    }
-
-    @Override
-    public void onSuccessGetWallstreetDataView(MainResponse mainResponse) {
-        this.mainResponse = mainResponse;
-        newsList = mainResponse.getArticlesList();
-        initRecyclerView();
-    }
-
-    @Override
-    public void onSuccessGetAppleDataView(MainResponse mainResponse) {
-        this.mainResponse = mainResponse;
-        newsList = mainResponse.getArticlesList();
-        initRecyclerView();
-    }
-
-    @Override
-    public void onSuccessGetTechcrunchDataView(MainResponse mainResponse) {
-        this.mainResponse = mainResponse;
-        newsList = mainResponse.getArticlesList();
-        initRecyclerView();
-    }
-
-    @Override
-    public void onSuccessGetBitcoinDataView(MainResponse mainResponse) {
-        this.mainResponse = mainResponse;
-        newsList = mainResponse.getArticlesList();
-        initRecyclerView();
-    }
-
-    @Override
     public void showProgressbar() {
+        etSearch.setVisibility(View.GONE);
         progressBar.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.GONE);
     }
@@ -149,15 +114,28 @@ public class NewsListActivity extends AppCompatActivity implements NewsListContr
     public void showSearchNewsResult(List<Articles> filteredArticleList) {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
-        NewsListAdapter newsListAdapter = new NewsListAdapter(this, filteredArticleList, recyclerViewInterface);
+        newsListAdapter = new NewsListAdapter(this, filteredArticleList, recyclerViewInterface);
         newsListAdapter.setSearch(filteredArticleList);
         recyclerView.setAdapter(newsListAdapter);
+    }
+
+    @Override
+    public void onSuccessGetDataView(MainResponse mainResponse) {
+        etSearch.setVisibility(View.VISIBLE);
+        this.mainResponse = mainResponse;
+        newsList = mainResponse.getArticlesList();
+        initRecyclerView();
+    }
+
+    @Override
+    public void showDataBeforeFiltered() {
+        initRecyclerView();
     }
 
     private void initRecyclerView() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
-        NewsListAdapter newsListAdapter = new NewsListAdapter(this, newsList, recyclerViewInterface);
+        newsListAdapter = new NewsListAdapter(this, newsList, recyclerViewInterface);
         recyclerView.setAdapter(newsListAdapter);
     }
 

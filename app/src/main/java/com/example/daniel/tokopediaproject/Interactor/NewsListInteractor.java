@@ -24,14 +24,12 @@ public class NewsListInteractor implements NewsListContract.Interactor {
             @Override
             public void onSuccessResponse(Call call, Response response) {
                 MainResponse mainResponse = (MainResponse) response.body();
-                System.out.println("main response : "+mainResponse.getArticlesList().size());
-                presenter.onSuccessGetBusinessData(mainResponse);
+                presenter.onSuccessGetData(mainResponse);
             }
 
             @Override
             public void onFailedResponse(Call call, Response response) {
-                System.out.println("response : "+response.message());
-                presenter.onFailedGetBusinessData(response.message());
+                presenter.onFailedGetData(response.message());
             }
 
             @Override
@@ -48,12 +46,12 @@ public class NewsListInteractor implements NewsListContract.Interactor {
             @Override
             public void onSuccessResponse(Call call, Response response) {
                 MainResponse mainResponse = (MainResponse) response.body();
-                presenter.onSuccessGetBitcoinData(mainResponse);
+                presenter.onSuccessGetData(mainResponse);
             }
 
             @Override
             public void onFailedResponse(Call call, Response response) {
-                presenter.onFailedGetBusinessData(response.message());
+                presenter.onFailedGetData(response.message());
             }
 
             @Override
@@ -70,12 +68,12 @@ public class NewsListInteractor implements NewsListContract.Interactor {
             @Override
             public void onSuccessResponse(Call call, Response response) {
                 MainResponse mainResponse = (MainResponse) response.body();
-                presenter.onSuccessGetTechcrunchData(mainResponse);
+                presenter.onSuccessGetData(mainResponse);
             }
 
             @Override
             public void onFailedResponse(Call call, Response response) {
-                presenter.onFailedGetTechcrunchData(response.message());
+                presenter.onFailedGetData(response.message());
             }
 
             @Override
@@ -92,12 +90,12 @@ public class NewsListInteractor implements NewsListContract.Interactor {
             @Override
             public void onSuccessResponse(Call call, Response response) {
                 MainResponse mainResponse = (MainResponse) response.body();
-                presenter.onSuccessGetAppleData(mainResponse);
+                presenter.onSuccessGetData(mainResponse);
             }
 
             @Override
             public void onFailedResponse(Call call, Response response) {
-                presenter.onFailedGetAppleData(response.message());
+                presenter.onFailedGetData(response.message());
             }
 
             @Override
@@ -114,12 +112,12 @@ public class NewsListInteractor implements NewsListContract.Interactor {
             @Override
             public void onSuccessResponse(Call call, Response response) {
                 MainResponse mainResponse = (MainResponse) response.body();
-                presenter.onSuccessGetWallstreetData(mainResponse);
+                presenter.onSuccessGetData(mainResponse);
             }
 
             @Override
             public void onFailedResponse(Call call, Response response) {
-                presenter.onFailedGetWallstreetData(response.message());
+                presenter.onFailedGetData(response.message());
             }
 
             @Override
