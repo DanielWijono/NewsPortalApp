@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
+import android.widget.ProgressBar;
 
 import com.example.daniel.tokopediaproject.R;
 
@@ -18,6 +20,8 @@ public class WebViewActivity extends AppCompatActivity {
     WebView webview;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+    @BindView(R.id.progress_bar)
+    ProgressBar progressBar;
 
     String url;
 
@@ -46,7 +50,21 @@ public class WebViewActivity extends AppCompatActivity {
 
         if (bundle != null) {
             url = bundle.getString("url");
-            webview.loadUrl(url);
+            loadWebView();
         }
+    }
+
+    private void loadWebView() {
+        webview.loadUrl(url);
+        webview.setWebChromeClient(new WebChromeClient() {
+            public void onProgressChanged(WebView view, int progress) {
+                progressBar.setProgress(progress);
+                if (progress == 100) {
+                    progressBar.setVisibility(View.GONE);
+                } else {
+                    progressBar.setVisibility(View.VISIBLE);
+                }
+            }
+        });
     }
 }
