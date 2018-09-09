@@ -35,4 +35,14 @@
         android:layout_below="@+id/et_search"
         android:id="@+id/recycler_view"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Berita tidak ditemukan"
+        android:textColor="@color/color_black"
+        android:textSize="@dimen/padding_margin_24dp"
+        android:visibility="gone"
+        android:id="@+id/tv_empty_view"/>
+
 </RelativeLayout>

@@ -86,6 +86,10 @@ public class NewsListPresenter implements NewsListContract.Presenter {
                 }
             }
         }
-        view.showSearchNewsResult(filteredArticleList);
+        if (filteredArticleList.size() > 0) {
+            view.showSearchNewsResult(filteredArticleList);
+        } else {
+            view.showEmptyDataSearch();
+        }
     }
 }

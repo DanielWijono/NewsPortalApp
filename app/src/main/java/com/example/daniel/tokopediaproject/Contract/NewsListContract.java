@@ -19,6 +19,8 @@ public interface NewsListContract {
         void onSuccessGetDataView(MainResponse mainResponse);
 
         void showDataBeforeFiltered();
+
+        void showEmptyDataSearch();
     }
 
     interface Presenter {

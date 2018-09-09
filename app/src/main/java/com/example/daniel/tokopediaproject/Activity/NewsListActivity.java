@@ -12,6 +12,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.example.daniel.tokopediaproject.Adapter.NewsListAdapter;
 import com.example.daniel.tokopediaproject.Contract.NewsListContract;
@@ -37,6 +38,8 @@ public class NewsListActivity extends AppCompatActivity implements NewsListContr
     Toolbar toolbar;
     @BindView(R.id.et_search)
     EditText etSearch;
+    @BindView(R.id.tv_empty_view)
+    TextView tvEmptyView;
 
     private Bundle bundle;
     private String newsValue;
@@ -121,6 +124,7 @@ public class NewsListActivity extends AppCompatActivity implements NewsListContr
 
     @Override
     public void onSuccessGetDataView(MainResponse mainResponse) {
+        tvEmptyView.setVisibility(View.GONE);
         etSearch.setVisibility(View.VISIBLE);
         this.mainResponse = mainResponse;
         newsList = mainResponse.getArticlesList();
@@ -132,7 +136,13 @@ public class NewsListActivity extends AppCompatActivity implements NewsListContr
         initRecyclerView();
     }
 
+    @Override
+    public void showEmptyDataSearch() {
+        tvEmptyView.setVisibility(View.VISIBLE);
+    }
+
     private void initRecyclerView() {
+        tvEmptyView.setVisibility(View.GONE);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
         newsListAdapter = new NewsListAdapter(this, newsList, recyclerViewInterface);
