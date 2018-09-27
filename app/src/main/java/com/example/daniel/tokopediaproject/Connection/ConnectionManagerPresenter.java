@@ -55,6 +55,6 @@ public class ConnectionManagerPresenter {
             public void onFailure(Call call, Throwable t) {
                 mConnectionCallback.onFailure(call, t.getMessage());
             }
-        });
+        }) ;
     }
 }
